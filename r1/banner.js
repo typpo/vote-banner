@@ -131,11 +131,11 @@
     // Use this instead of an inline to avoid running into unsafe-inline
     // content security policies.
     document.getElementById('vote-banner__close').onclick = function() {
-      window.__voteBanner__close();
+      window.__voteBanner_close();
     }
   }
 
-  window.voteBanner__close = function() {
+  window.__voteBanner_close = function() {
     var elt = document.getElementById('vote-banner');
     elt.parentNode.removeChild(elt);
     adjustPositionFixed(true /* reverse */);
@@ -144,7 +144,7 @@
     createCookie(COOKIE_NAME, 1, 7);
   }
 
-  window.voteBanner__resetCookie = function() {
+  window.__voteBanner_resetCookie = function() {
     createCookie(COOKIE_NAME, '', -1);
   }
 
