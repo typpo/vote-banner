@@ -26,6 +26,9 @@
       top: 0; \
       left: 0; \
       width: 100%; \
+      background-color: yellow; \
+    } \
+    .vote-banner__inner { \
       padding: 0.8em; \
       background-color: ' + config.backgroundColor + '; \
       color: ' + config.fontColor + '; \
@@ -36,7 +39,7 @@
     } \
     .vote-banner__wrap { \
       position: relative; \
-      margin-top: 2.7em; \
+      margin-top: 3em; \
     } \
     .vote-banner__button { \
       border: 1px solid hsla(0,0%,2%,.25); \
@@ -106,7 +109,7 @@
     var elems = document.body.getElementsByTagName("*");
     bannerEmSize = bannerEmSize || parseFloat(getComputedStyle(document.getElementById('vote-banner')).fontSize);
     // Multiply by .vote-banner__wrap em height
-    var emAdjust = bannerEmSize * 2.7;
+    var emAdjust = bannerEmSize * 3;
     for (var i=0; i < elems.length; i++) {
       var elem = elems[i];
       if (window.getComputedStyle(elem, null).getPropertyValue('position') == 'fixed') {
@@ -136,10 +139,10 @@
 
   function addBanner() {
     document.body.insertAdjacentHTML("afterbegin",
-"<div id='vote-banner' class='vote-banner vote-banner__override'>" + config.text + " &nbsp;\
+"<div id='vote-banner' class='vote-banner vote-banner__override'><div class='vote-banner__inner'>" + config.text + " &nbsp;\
 <a id='vote-banner__register' class='vote-banner__button vote-banner__cta' href='https://bit.ly/2ILc8Ro' target='_blank'>Register to Vote</a> \
 <a id='vote-banner__lookup' class='vote-banner__button' href='https://bit.ly/2Cb2FS2' target='_blank'>Get Polling Location</a> \
-<div id='vote-banner__close' class='vote-banner__close'>&times;</div> \
+<div id='vote-banner__close' class='vote-banner__close'>&times;</div></div> \
 </div>");
   }
 
