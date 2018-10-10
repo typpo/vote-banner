@@ -44,6 +44,8 @@
     } \
     .vote-banner__button:hover { \
       background-color: #8c3911; \
+      color: #fff; \
+      text-decoration: none; \
     } \
     .vote-banner__cta { \
       background-color: #8f7fcc; \
@@ -80,9 +82,21 @@
     document.body.appendChild(div);
   }
 
+  function adjustPositionFixed() {
+    var elems = document.body.getElementsByTagName("*");
+    var emSize = parseFloat(getComputedStyle(document.getElementById('vote-banner')).fontSize);
+    for (var i=0; i < elems.length; i++) {
+      var elem = elems[i];
+      if (window.getComputedStyle(elem, null).getPropertyValue('position') == 'fixed') {
+        // Multiply by .vote-banner__wrap em height
+        elem.style.top = ((elem.style.top || 0) + emSize * 2.7) + 'px';
+      }
+    }
+  }
+
   function addBanner() {
     document.body.insertAdjacentHTML("afterbegin",
-                                     "<div class='vote-banner'><strong>Nov 6</strong> elections: are you voting? &nbsp;\
+                                     "<div id='vote-banner' class='vote-banner'><strong>Nov 6</strong> elections: are you voting? &nbsp;\
                                      <a id='vote-banner__register' class='vote-banner__button vote-banner__cta' href='https://www.vote.org/register-to-vote/' target='_blank'>Register to Vote</a> \
                                      <a id='vote-banner__lookup' class='vote-banner__button' href='https://www.vote.org/polling-place-locator/' target='_blank'>Get Polling Location</a> \
                                      </div>");
@@ -91,4 +105,5 @@
   injectStyles();
   wrapBody();
   addBanner();
+  adjustPositionFixed();
 })();
