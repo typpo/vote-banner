@@ -5,7 +5,7 @@
   "author": "<ianw_git@ianww.com>",
   "license": "MIT",
   "scripts": {
-    "pack": "uglifyjs --compress --mangle -- banner.js > banner.min.js"
+    "pack": "uglifyjs --compress --mangle -- r1/banner.js > r1/banner.min.js"
   },
   "dependencies": {
     "uglify-js": "^3.4.9"
