@@ -53,6 +53,17 @@
     .vote-banner__cta:hover { \
       background-color: #5c3fcc; \
     } \
+    .vote-banner__close { \
+      position: absolute; \
+      right: 2em; \
+      top: 0.4em; \
+      font-size: 1.5em; \
+      color: #404040; \
+      cursor: pointer; \
+    } \
+    .vote-banner__close:hover { \
+      color: #000; \
+    } \
   ';
 
   function injectStyles() {
@@ -71,6 +82,7 @@
 
   function wrapBody() {
     var div = document.createElement("div");
+    div.id = "vote-banner__wrap";
     div.className = "vote-banner__wrap";
 
     // Move the body's children into this wrapper
@@ -82,28 +94,51 @@
     document.body.appendChild(div);
   }
 
-  function adjustPositionFixed() {
+  var bannerEmSize;
+  function adjustPositionFixed(reverse) {
     var elems = document.body.getElementsByTagName("*");
-    var emSize = parseFloat(getComputedStyle(document.getElementById('vote-banner')).fontSize);
+    bannerEmSize = bannerEmSize || parseFloat(getComputedStyle(document.getElementById('vote-banner')).fontSize);
+    // Multiply by .vote-banner__wrap em height
+    var emAdjust = bannerEmSize * 2.7;
     for (var i=0; i < elems.length; i++) {
       var elem = elems[i];
       if (window.getComputedStyle(elem, null).getPropertyValue('position') == 'fixed') {
-        // Multiply by .vote-banner__wrap em height
-        elem.style.top = ((elem.style.top || 0) + emSize * 2.7) + 'px';
+        if (reverse) {
+          elem.style.top = ((parseFloat(elem.style.top) || 0) - emAdjust) + 'px';
+        } else {
+          elem.style.top = ((parseFloat(elem.style.top) || 0) + emAdjust) + 'px';
+        }
       }
     }
   }
 
+  function wireCloseButton() {
+    // Use this instead of an inline to avoid running into unsafe-inline
+    // content security policies.
+    document.getElementById('vote-banner__close').onclick = function() {
+      window.closeVoteBanner();
+    }
+  }
+
+  window.closeVoteBanner = function() {
+    var elt = document.getElementById('vote-banner');
+    elt.parentNode.removeChild(elt);
+    adjustPositionFixed(true /* reverse */);
+    document.getElementById('vote-banner__wrap').style.marginTop = 0;
+  }
+
   function addBanner() {
     document.body.insertAdjacentHTML("afterbegin",
-                                     "<div id='vote-banner' class='vote-banner'><strong>Nov 6</strong> elections: are you voting? &nbsp;\
-                                     <a id='vote-banner__register' class='vote-banner__button vote-banner__cta' href='https://www.vote.org/register-to-vote/' target='_blank'>Register to Vote</a> \
-                                     <a id='vote-banner__lookup' class='vote-banner__button' href='https://www.vote.org/polling-place-locator/' target='_blank'>Get Polling Location</a> \
-                                     </div>");
+"<div id='vote-banner' class='vote-banner'><strong>Nov 6</strong> elections: are you voting? &nbsp;\
+<a id='vote-banner__register' class='vote-banner__button vote-banner__cta' href='https://www.vote.org/register-to-vote/' target='_blank'>Register to Vote</a> \
+<a id='vote-banner__lookup' class='vote-banner__button' href='https://www.vote.org/polling-place-locator/' target='_blank'>Get Polling Location</a> \
+<div id='vote-banner__close' class='vote-banner__close'>&times;</div> \
+</div>");
   }
 
   injectStyles();
   wrapBody();
   addBanner();
   adjustPositionFixed();
+  wireCloseButton();
 })();
