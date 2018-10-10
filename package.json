@@ -1,0 +1,13 @@
+{
+  "name": "vote-banner",
+  "version": "1.0.0",
+  "description": "Add a voter registration CTA to your website",
+  "author": "<ianw_git@ianww.com>",
+  "license": "MIT",
+  "scripts": {
+    "pack": "uglifyjs --compress --mangle -- banner.js > banner.min.js"
+  },
+  "dependencies": {
+    "uglify-js": "^3.4.9"
+  }
+}
