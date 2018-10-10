@@ -56,7 +56,7 @@
     .vote-banner__close { \
       position: absolute; \
       right: 2em; \
-      top: 0.4em; \
+      top: 0.25em; \
       font-size: 1.5em; \
       color: #404040; \
       cursor: pointer; \
@@ -129,7 +129,7 @@
 
   function addBanner() {
     document.body.insertAdjacentHTML("afterbegin",
-"<div id='vote-banner' class='vote-banner'><strong>Nov 6</strong> elections: are you voting? &nbsp;\
+"<div id='vote-banner' class='vote-banner vote-banner__override'><strong>Nov 6</strong> elections: are you voting? &nbsp;\
 <a id='vote-banner__register' class='vote-banner__button vote-banner__cta' href='http://bit.ly/2ILc8Ro' target='_blank'>Register to Vote</a> \
 <a id='vote-banner__lookup' class='vote-banner__button' href='http://bit.ly/2Cb2FS2' target='_blank'>Get Polling Location</a> \
 <div id='vote-banner__close' class='vote-banner__close'>&times;</div> \
