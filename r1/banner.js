@@ -1,4 +1,4 @@
-(function() {
+;(function(window) {
   var COOKIE_NAME = 'vote-banner__hide';
   if (readCookie(COOKIE_NAME)) {
     return;
@@ -192,4 +192,4 @@
   addBanner();
   adjustPositionFixed();
   wireCloseButton();
-})();
+})(window);
