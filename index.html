@@ -3,6 +3,7 @@
     <style>
       body {
         font-family: sans-serif;
+        margin: 1em 5em;
       }
 
       .code {
@@ -14,14 +15,43 @@
     </style>
   </head>
   <body>
-    <h1>Vote Banner</h1>
+    <center><h1>A Pro-Voting Banner for Upcoming U.S. Midterms</h1></center>
+    <h2>☞ Add a voter registration call-to-action to your website</h2>
     <p>
-      Add this to your site:
+      This simple code snippet will add a voter registration call-to-action to any page.
     </p>
     <p>
-      <span class="code">
+      The banner is only shown for U.S. users up to election day. As election day approaches, the "Register to Vote" option will be replaced by the "Get Polling Location" button.
+    </p>
+    <p>
+      <img src="./images/example.png" width="100%">
+    </p>
+    <p>
+      This library is open source on github <a href="http://github.com/typpo/vote-banner">here</a>.
+    </p>
+    <h2>☞ Add it to your site</h2>
+    <p>
+      Include this line of HTML on your site:
+    </p>
+    <p>
+      <div class="code">
         &lt;script src=&quot;https://s3.amazonaws.com/vote-banner/r1/banner.min.js&quot; async&gt;&lt;/script&gt;
-      </span>
+      </div>
+    </p>
+    <p>
+      To quickly preview how it looks on your page, you may paste this into your console:
+    </p>
+    <p>
+      <div class="code">
+        var script = document.createElement('script');<br>
+        script.type = 'text/javascript';<br>
+        script.src = 'https://s3.amazonaws.com/vote-banner/r1/banner.min.js';<br>
+        document.body.appendChild(script);
+      </div>
+    </p>
+    <h2>☞ How to customize it</h2>
+    <p>
+      ...
     </p>
   </body>
 </html>
