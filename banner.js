@@ -130,8 +130,8 @@
   function addBanner() {
     document.body.insertAdjacentHTML("afterbegin",
 "<div id='vote-banner' class='vote-banner'><strong>Nov 6</strong> elections: are you voting? &nbsp;\
-<a id='vote-banner__register' class='vote-banner__button vote-banner__cta' href='https://www.vote.org/register-to-vote/' target='_blank'>Register to Vote</a> \
-<a id='vote-banner__lookup' class='vote-banner__button' href='https://www.vote.org/polling-place-locator/' target='_blank'>Get Polling Location</a> \
+<a id='vote-banner__register' class='vote-banner__button vote-banner__cta' href='http://bit.ly/2ILc8Ro' target='_blank'>Register to Vote</a> \
+<a id='vote-banner__lookup' class='vote-banner__button' href='http://bit.ly/2Cb2FS2' target='_blank'>Get Polling Location</a> \
 <div id='vote-banner__close' class='vote-banner__close'>&times;</div> \
 </div>");
   }
