@@ -1,14 +1,21 @@
 (function() {
   var DEFAULT_CONFIG = {
     backgroundColor: '#f26522',
-    buttonBackgroundColor: '#dc4700',
+    fontColor: '#000',
+    defaultButtonFontColor: '#fff',
+    defaultButtonBackgroundColor: '#dc4700',
+    defaultButtonBackgroundColorHover: '#8c3911',
+    mainButtonFontColor: '#fff',
+    mainButtonBackgroundColor: '#8f7fcc',
+    mainButtonBackgroundColorHover: '#5c3fcc',
+    text: '<strong>Nov 6</strong> elections: are you voting?'
   };
 
   var config = DEFAULT_CONFIG;
   if (window.voteBannerConfig) {
     for (var key in window.voteBannerConfig) {
       if (voteBannerConfig.hasOwnProperty(key)) {
-        config[key] = window.voteBannerConfig[val];
+        config[key] = window.voteBannerConfig[key];
       }
     }
   }
@@ -21,7 +28,7 @@
       width: 100%; \
       padding: 0.8em; \
       background-color: ' + config.backgroundColor + '; \
-      color: #000; \
+      color: ' + config.fontColor + '; \
       box-shadow: 0 1px 0 rgba(0,0,0,.1); \
       text-align: center; \
       font-size: 1em; \
@@ -34,24 +41,24 @@
     .vote-banner__button { \
       border: 1px solid hsla(0,0%,2%,.25); \
       border-radius: 3px; \
-      background-color: ' + config.buttonBackgroundColor + '; \
+      background-color: ' + config.defaultButtonBackgroundColor + '; \
       padding: 0.3em; \
-      color: #fff; \
+      color: ' + config.defaultButtonFontColor + '; \
       cursor: pointer; \
       transition: background-color .2s ease,color .2s ease,border-color .2s ease; \
       font-size: 0.8em; \
       text-decoration: none; \
     } \
     .vote-banner__button:hover { \
-      background-color: #8c3911; \
-      color: #fff; \
+      background-color: ' + config.defaultButtonBackgroundColorHover + '; \
       text-decoration: none; \
     } \
     .vote-banner__cta { \
-      background-color: #8f7fcc; \
+      color: ' + config.mainButtonFontColor + '; \
+      background-color: ' + config.mainButtonBackgroundColor + '; \
     } \
     .vote-banner__cta:hover { \
-      background-color: #5c3fcc; \
+      background-color: ' + config.mainButtonBackgroundColorHover + '; \
     } \
     .vote-banner__close { \
       position: absolute; \
@@ -129,7 +136,7 @@
 
   function addBanner() {
     document.body.insertAdjacentHTML("afterbegin",
-"<div id='vote-banner' class='vote-banner vote-banner__override'><strong>Nov 6</strong> elections: are you voting? &nbsp;\
+"<div id='vote-banner' class='vote-banner vote-banner__override'>" + config.text + " &nbsp;\
 <a id='vote-banner__register' class='vote-banner__button vote-banner__cta' href='http://bit.ly/2ILc8Ro' target='_blank'>Register to Vote</a> \
 <a id='vote-banner__lookup' class='vote-banner__button' href='http://bit.ly/2Cb2FS2' target='_blank'>Get Polling Location</a> \
 <div id='vote-banner__close' class='vote-banner__close'>&times;</div> \
