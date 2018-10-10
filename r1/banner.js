@@ -1,8 +1,5 @@
-;(function(window) {
+;(function() {
   var COOKIE_NAME = 'vote-banner__hide';
-  if (readCookie(COOKIE_NAME)) {
-    return;
-  }
 
   var DEFAULT_CONFIG = {
     backgroundColor: '#f26522',
@@ -187,9 +184,13 @@
     return null;
   }
 
+  if (readCookie(COOKIE_NAME)) {
+    return;
+  }
+
   injectStyles();
   wrapBody();
   addBanner();
   adjustPositionFixed();
   wireCloseButton();
-})(window);
+})();
