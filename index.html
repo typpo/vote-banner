@@ -14,10 +14,26 @@
         margin-left: 1em;
         font-family: monospace;
       }
+
       .code-inline  {
         padding: 0.2em 0.2em;
         background-color: #eee;
         font-family: monospace;
+      }
+
+      .highlight {
+        background-color: rgba(255, 255, 126, 0.2);
+        border: 1px solid #ddd;
+        padding: 1em;
+      }
+
+      .copy-to-clipboard {
+        float: right;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      .copy-to-clipboard:hover {
+        color: blue;
       }
     </style>
   </head>
@@ -34,14 +50,17 @@
       <img src="./images/example.png" width="100%">
     </p>
     <h2>☞ Add it to your site</h2>
-    <p>
-      Include this line of HTML on your site:
-    </p>
-    <p>
-      <div class="code">
-        &lt;script src=&quot;https://vote.speaklouder.org/r1/banner.min.js&quot; async&gt;&lt;/script&gt;
-      </div>
-    </p>
+    <div class="highlight">
+      <p>
+        Include this line of HTML on your site:
+      </p>
+      <p>
+        <div class="code">
+          &lt;script src=&quot;https://vote.speaklouder.org/r1/banner.min.js&quot; async&gt;&lt;/script&gt;
+          <a class="copy-to-clipboard" onClick="window.copySnippetToClipboard()">Copy</a>
+        </div>
+      </p>
+    </div>
     <p>
       To quickly preview how it looks on your page, you may paste this into your console:
     </p>
@@ -51,6 +70,8 @@
         script.type = 'text/javascript';<br>
         script.src = 'https://vote.speaklouder.org/r1/banner.min.js';<br>
         document.body.appendChild(script);
+
+        <a class="copy-to-clipboard" onClick="window.copyTestSnippetToClipboard()">Copy</a>
       </div>
     </p>
     <h2>☞ How to customize it</h2>
@@ -89,5 +110,75 @@
     <p>
       This library is open source on Github <a href="http://github.com/typpo/vote-banner">here</a>.
     </p>
+  <script>
+function copyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+
+  //
+  // *** This styling is an extra step which is likely not required. ***
+  //
+  // Why is it here? To ensure:
+  // 1. the element is able to have focus and selection.
+  // 2. if element was to flash render it has minimal visual impact.
+  // 3. less flakyness with selection and copying which **might** occur if
+  //    the textarea element is not visible.
+  //
+  // The likelihood is the element won't even render, not even a flash,
+  // so some of these are just precautions. However in IE the element
+  // is visible whilst the popup box asking the user for permission for
+  // the web page to copy to the clipboard.
+  //
+
+  // Place in top-left corner of screen regardless of scroll position.
+  textArea.style.position = 'fixed';
+  textArea.style.top = 0;
+  textArea.style.left = 0;
+
+  // Ensure it has a small width and height. Setting to 1px / 1em
+  // doesn't work as this gives a negative w/h on some browsers.
+  textArea.style.width = '2em';
+  textArea.style.height = '2em';
+
+  // We don't need padding, reducing the size if it does flash render.
+  textArea.style.padding = 0;
+
+  // Clean up any borders.
+  textArea.style.border = 'none';
+  textArea.style.outline = 'none';
+  textArea.style.boxShadow = 'none';
+
+  // Avoid flash of white box if rendered for any reason.
+  textArea.style.background = 'transparent';
+
+
+  textArea.value = text;
+
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+
+  document.body.removeChild(textArea);
+}
+
+window.copySnippetToClipboard = function() {
+  copyTextToClipboard('<script src="https://vote.speaklouder.org/r1/banner.min.js" async><\/script>');
+  alert('Tag has been copied');
+}
+window.copyTestSnippetToClipboard = function() {
+  copyTextToClipboard("var script = document.createElement('script');\n\
+script.type = 'text/javascript';\n\
+script.src = 'https://vote.speaklouder.org/r1/banner.min.js';\n\
+document.body.appendChild(script);");
+  alert('Tag has been copied');
+}
+  </script>
   </body>
 </html>
