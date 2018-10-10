@@ -12,7 +12,16 @@
       left: 0;
       height: 3em;
       background-color: red;
-      width: 100%;
+      width: 50%;
+    }
+
+    .navbar-absolute {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      height: 3em;
+      background-color: blue;
+      width: 50%;
     }
 
     .lipsum {
@@ -22,7 +31,10 @@
 </head>
 <body>
 <div class="navbar">
-  I should always be visible
+  Fixed nav - I should always be visible
+</div>
+<div class="navbar-absolute">
+  Absolute nav - I should always be visible
 </div>
 <div class="lipsum">
 <h1>Hello World</h1>
