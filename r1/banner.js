@@ -2,13 +2,13 @@
   var COOKIE_NAME = 'vote-banner__hide';
 
   var DEFAULT_CONFIG = {
-    backgroundColor: '#f26522',
+    backgroundColor: '#ff7a2b',
     fontColor: '#000',
     defaultButtonFontColor: '#fff',
-    defaultButtonBackgroundColor: '#dc4700',
-    defaultButtonBackgroundColorHover: '#8c3911',
+    defaultButtonBackgroundColor: '#8f7fcc',
+    defaultButtonBackgroundColorHover: '#5c3fcc',
     mainButtonFontColor: '#fff',
-    mainButtonBackgroundColor: '#8f7fcc',
+    mainButtonBackgroundColor: '#585fff',
     mainButtonBackgroundColorHover: '#5c3fcc',
     text: '<strong>Nov 6</strong> elections: are you voting?'
   };
