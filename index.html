@@ -18,9 +18,17 @@
 		<meta property="og:image" content="https://vote.speaklouder.org/images/ogImage2.jpg" />
 		<meta property="og:description" content="Easily add voter registration call-to-action on your site." />
     <style>
+      html {
+        margin: 0;
+      }
+
       body {
         font-family: sans-serif;
-        margin: 3.5em 5em;
+        margin: 0;
+      }
+
+      .container {
+        margin: 0 5em;
       }
 
       .code {
@@ -47,6 +55,7 @@
         text-decoration: underline;
         cursor: pointer;
       }
+
       .copy-to-clipboard:hover {
         color: blue;
       }
@@ -59,85 +68,87 @@
     </style>
   </head>
   <body>
-    <center><h1>Encourage Your Users to Vote</h1></center>
-    <p>
-      U.S. midterm elections are coming up on November 6.  This year they're <a href="https://www.vox.com/policy-and-politics/2018/1/2/16795804/elections-2018-midterms-consequences" target="_blank">especially important</a>.  You can advocate for democracy by encouraging your users to vote.
-    </p>
-    <h2>☞ Add a voter registration call-to-action to your website</h2>
-    <p>
-      <strong>This simple code snippet will add a voter registration call-to-action to any page.</strong>
-    </p>
-    <div class="highlight">
+    <div class="container">
+      <center><h1>Encourage Your Users to Vote</h1></center>
       <p>
-        Include this line of HTML on your site:
+        U.S. midterm elections are coming up on November 6.  This year they're <a href="https://www.vox.com/policy-and-politics/2018/1/2/16795804/elections-2018-midterms-consequences" target="_blank">especially important</a>.  You can advocate for democracy by encouraging your users to vote.
+      </p>
+      <h2>☞ Add a voter registration call-to-action to your website</h2>
+      <p>
+        <strong>This simple code snippet will add a voter registration call-to-action to any page.</strong>
+      </p>
+      <div class="highlight">
+        <p>
+          Include this line of HTML on your site:
+        </p>
+        <p>
+          <div class="code">
+            &lt;script src=&quot;https://vote.speaklouder.org/r1/banner.min.js&quot; async&gt;&lt;/script&gt;
+            <a class="copy-to-clipboard" onClick="window.copySnippetToClipboard()">Copy</a>
+          </div>
+        </p>
+      </div>
+      <p>
+        The banner is <strong>only shown to U.S. users</strong> up to election day. As election day approaches, the "Register to Vote" option will be replaced by the "Get Polling Location" button.
+      </p>
+      <p>
+        <img src="./images/example.png" width="100%">
+      </p>
+      <h2>☞ Preview it on your site</h2>
+      <p>
+        To quickly preview how it looks on your page, you may paste this into your console:
       </p>
       <p>
         <div class="code">
-          &lt;script src=&quot;https://vote.speaklouder.org/r1/banner.min.js&quot; async&gt;&lt;/script&gt;
-          <a class="copy-to-clipboard" onClick="window.copySnippetToClipboard()">Copy</a>
+          var script = document.createElement('script');<br>
+          script.type = 'text/javascript';<br>
+          script.src = 'https://vote.speaklouder.org/r1/banner.min.js';<br>
+          document.body.appendChild(script);
+
+          <a class="copy-to-clipboard" onClick="window.copyTestSnippetToClipboard()">Copy</a>
         </div>
       </p>
+      <h2>☞ How to customize the banner</h2>
+      <p>
+        You can set the following attributes under <span class="code-inline">window.voteBannerConfig</span>:
+        <ul>
+          <li><span class="code-inline">backgroundColor</span>: The background color of the banner</li>
+          <li><span class="code-inline">fontColor</span>: The font color of the banner</li>
+          <li><span class="code-inline">defaultButtonFontColor</span>: The font color for buttons</li>
+          <li><span class="code-inline">defaultButtonBackgroundColor</span>: The background color for buttons</li>
+          <li><span class="code-inline">defaultButtonBackgroundColorHover</span>: The background color for buttons on hover</li>
+          <li><span class="code-inline">mainButtonFontColor</span>: The font color for the main call-to-action button ("Register to Vote")</li>
+          <li><span class="code-inline">mainButtonBackgroundColor</span>: The background color for the main call-to-action button</li>
+          <li><span class="code-inline">mainButtonBackgroundColorHover</span>: The background color for the main call-to-action button on hover</li>
+          <li><span class="code-inline">text</span>: The text shown (HTML ok)
+        </ul>
+      </p>
+      <p>
+        Here is the default settings object. You can change or remove any of these attributes to customize the appearance of the banner:
+        <div class="code"><pre>window.voteBannerConfig = {
+      backgroundColor: '#f26522',
+      fontColor: '#000',
+      defaultButtonFontColor: '#fff',
+      defaultButtonBackgroundColor: '#dc4700',
+      defaultButtonBackgroundColorHover: '#8c3911',
+      mainButtonFontColor: '#fff',
+      mainButtonBackgroundColor: '#8f7fcc',
+      mainButtonBackgroundColorHover: '#5c3fcc',
+      text: '&#x3C;strong&#x3E;Nov 6&#x3C;/strong&#x3E; elections: are you voting?',
+  };</pre></div>
+      </p>
+      <p>
+        Be sure to set <span class="code-inline">window.voteBannerConfig</span> <em>before</em> including the <span class="code-inline">&#x3C;script&#x3E</span> tag.
+      </p>
+      <h2>☞ Compatibility</h2>
+      <p>
+        This snippet is compatible with IE 9+, Firefox 3.5+, Safari 3.1+ (Mobile Safari 3.2+), Opera 10.5+, and Chrome.
+      </p>
+      <h2>☞ Open Source</h2>
+      <p>
+        This library is open source on Github <a href="http://github.com/typpo/vote-banner">here</a>.
+      </p>
     </div>
-    <p>
-      The banner is <strong>only shown to U.S. users</strong> up to election day. As election day approaches, the "Register to Vote" option will be replaced by the "Get Polling Location" button.
-    </p>
-    <p>
-      <img src="./images/example.png" width="100%">
-    </p>
-    <h2>☞ Preview it on your site</h2>
-    <p>
-      To quickly preview how it looks on your page, you may paste this into your console:
-    </p>
-    <p>
-      <div class="code">
-        var script = document.createElement('script');<br>
-        script.type = 'text/javascript';<br>
-        script.src = 'https://vote.speaklouder.org/r1/banner.min.js';<br>
-        document.body.appendChild(script);
-
-        <a class="copy-to-clipboard" onClick="window.copyTestSnippetToClipboard()">Copy</a>
-      </div>
-    </p>
-    <h2>☞ How to customize the banner</h2>
-    <p>
-      You can set the following attributes under <span class="code-inline">window.voteBannerConfig</span>:
-      <ul>
-        <li><span class="code-inline">backgroundColor</span>: The background color of the banner</li>
-        <li><span class="code-inline">fontColor</span>: The font color of the banner</li>
-        <li><span class="code-inline">defaultButtonFontColor</span>: The font color for buttons</li>
-        <li><span class="code-inline">defaultButtonBackgroundColor</span>: The background color for buttons</li>
-        <li><span class="code-inline">defaultButtonBackgroundColorHover</span>: The background color for buttons on hover</li>
-        <li><span class="code-inline">mainButtonFontColor</span>: The font color for the main call-to-action button ("Register to Vote")</li>
-        <li><span class="code-inline">mainButtonBackgroundColor</span>: The background color for the main call-to-action button</li>
-        <li><span class="code-inline">mainButtonBackgroundColorHover</span>: The background color for the main call-to-action button on hover</li>
-        <li><span class="code-inline">text</span>: The text shown (HTML ok)
-      </ul>
-    </p>
-    <p>
-      Here is the default settings object. You can change or remove any of these attributes to customize the appearance of the banner:
-      <div class="code"><pre>window.voteBannerConfig = {
-    backgroundColor: '#f26522',
-    fontColor: '#000',
-    defaultButtonFontColor: '#fff',
-    defaultButtonBackgroundColor: '#dc4700',
-    defaultButtonBackgroundColorHover: '#8c3911',
-    mainButtonFontColor: '#fff',
-    mainButtonBackgroundColor: '#8f7fcc',
-    mainButtonBackgroundColorHover: '#5c3fcc',
-    text: '&#x3C;strong&#x3E;Nov 6&#x3C;/strong&#x3E; elections: are you voting?',
-};</pre></div>
-    </p>
-    <p>
-      Be sure to set <span class="code-inline">window.voteBannerConfig</span> <em>before</em> including the <span class="code-inline">&#x3C;script&#x3E</span> tag.
-    </p>
-    <h2>☞ Compatibility</h2>
-    <p>
-      This snippet is compatible with IE 9+, Firefox 3.5+, Safari 3.1+ (Mobile Safari 3.2+), Opera 10.5+, and Chrome.
-    </p>
-    <h2>☞ Open Source</h2>
-    <p>
-      This library is open source on Github <a href="http://github.com/typpo/vote-banner">here</a>.
-    </p>
   <script>
 function copyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
@@ -208,6 +219,6 @@ document.body.appendChild(script);");
   alert('Tag has been copied');
 }
   </script>
-  <script src="r1/banner.min.js" async></script>
+  <script src="r1/banner.js" async></script>
   </body>
 </html>

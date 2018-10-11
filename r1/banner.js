@@ -25,11 +25,9 @@
   var CSS = '\
     .vote-banner { \
       position: absolute; \
-      transform: translate(0, -3em); \
-      top: 0; \
+      top: -3em; \
       left: 0; \
       width: 100%; \
-      background-color: yellow; \
     } \
     .vote-banner__inner { \
       padding: 0.8em; \
@@ -55,6 +53,7 @@
       text-decoration: none; \
     } \
     .vote-banner__button:hover { \
+      color: ' + config.defaultButtonFontColor + '; \
       background-color: ' + config.defaultButtonBackgroundColorHover + '; \
       text-decoration: none; \
     } \
@@ -63,6 +62,7 @@
       background-color: ' + config.mainButtonBackgroundColor + '; \
     } \
     .vote-banner__cta:hover { \
+      color: ' + config.mainButtonFontColor + '; \
       background-color: ' + config.mainButtonBackgroundColorHover + '; \
     } \
     .vote-banner__close { \
@@ -105,7 +105,12 @@
       document.body.style.transform = prevBodyTransform;
     } else {
       prevBodyTransform = document.body.style.transform;
-      document.body.style.transform = 'translate(0, 3em)';
+			var elt = document.getElementById('vote-banner');
+			var px = Math.abs(elt.getBoundingClientRect().top);
+      document.body.style.transform = 'translate(0, ' + px + 'px)';
+			px -= Math.abs(elt.getBoundingClientRect().top);
+			console.log(px);
+      document.body.style.transform = 'translate(0, ' + px + 'px)';
     }
   }
 
@@ -174,7 +179,7 @@
   }
 
   injectStyles();
-  adjustBody();
   addBanner();
   wireCloseButton();
+  adjustBody();
 })();
