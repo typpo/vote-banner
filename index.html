@@ -3,8 +3,9 @@
   <head>
 		<title>Voter Registration Snippet</title>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 		<meta name="description" content="Easily add voter registration call-to-action on your site.">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:site" content="@iwebst">
 		<meta name="twitter:title" content="Help Register Voters On Your Website">
@@ -48,6 +49,12 @@
       }
       .copy-to-clipboard:hover {
         color: blue;
+      }
+
+      @media screen and (max-width: 960px) {
+        body {
+          margin: 0;
+        }
       }
     </style>
   </head>
@@ -201,6 +208,6 @@ document.body.appendChild(script);");
   alert('Tag has been copied');
 }
   </script>
-  <script src="https://vote.speaklouder.org/r1/banner.min.js" async></script>
+  <script src="r1/banner.min.js" async></script>
   </body>
 </html>
