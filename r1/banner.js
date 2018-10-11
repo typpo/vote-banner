@@ -40,6 +40,9 @@
       font-size: 1em; \
       z-index: 2147483647; \
     } \
+    .vote-banner__button-container { \
+      display: inline-block; \
+    } \
     .vote-banner__button { \
       border: 1px solid hsla(0,0%,2%,.25); \
       border-radius: 3px; \
@@ -64,14 +67,21 @@
     } \
     .vote-banner__close { \
       position: absolute; \
-      right: 2em; \
-      top: 0.25em; \
+      right: 14px; \
+      top: 8px; \
       font-size: 1.5em; \
       color: #404040; \
       cursor: pointer; \
     } \
     .vote-banner__close:hover { \
       color: #000; \
+    } \
+    @media screen and (max-width: 960px) { \
+      .vote-banner__inner { \
+        padding: 0.45em; \
+        font-size: 0.85em; \
+        line-height: 1.3em; \
+      } \
     } \
   ';
 
@@ -123,8 +133,10 @@
   function addBanner() {
     document.body.insertAdjacentHTML("afterbegin",
 "<div id='vote-banner' class='vote-banner vote-banner__override'><div class='vote-banner__inner'>" + config.text + " &nbsp;\
+<div class='vote-banner__button-container'> \
 <a id='vote-banner__register' class='vote-banner__button vote-banner__cta' href='https://bit.ly/2ILc8Ro' target='_blank'>Register to Vote</a> \
 <a id='vote-banner__lookup' class='vote-banner__button' href='https://bit.ly/2Cb2FS2' target='_blank'>Get Polling Location</a> \
+</div> \
 <div id='vote-banner__close' class='vote-banner__close'>&times;</div></div> \
 </div>");
   }
