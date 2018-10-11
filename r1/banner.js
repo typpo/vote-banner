@@ -106,10 +106,13 @@
     } else {
       prevBodyTransform = document.body.style.transform;
 			var elt = document.getElementById('vote-banner');
+
+      // Crazy workaround: the measurements are wrong due to issues with CSS
+      // translate/standards mode. You have to move the body up twice in order
+      // to get the vote banner flush with the top.
 			var px = Math.abs(elt.getBoundingClientRect().top);
       document.body.style.transform = 'translate(0, ' + px + 'px)';
 			px -= Math.abs(elt.getBoundingClientRect().top);
-			console.log(px);
       document.body.style.transform = 'translate(0, ' + px + 'px)';
     }
   }
