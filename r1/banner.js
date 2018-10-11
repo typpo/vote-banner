@@ -25,6 +25,7 @@
   var CSS = '\
     .vote-banner { \
       position: absolute; \
+      transform: translate(0, -3em); \
       top: 0; \
       left: 0; \
       width: 100%; \
@@ -38,10 +39,6 @@
       text-align: center; \
       font-size: 1em; \
       z-index: 2147483647; \
-    } \
-    .vote-banner__wrap { \
-      position: relative; \
-      margin-top: 3em; \
     } \
     .vote-banner__button { \
       border: 1px solid hsla(0,0%,2%,.25); \
@@ -92,35 +89,13 @@
     head.appendChild(style);
   }
 
-  function wrapBody() {
-    var div = document.createElement("div");
-    div.id = "vote-banner__wrap";
-    div.className = "vote-banner__wrap";
-
-    // Move the body's children into this wrapper
-    while (document.body.firstChild) {
-      div.appendChild(document.body.firstChild);
-    }
-
-    // Append the wrapper to the body
-    document.body.appendChild(div);
-  }
-
-  var bannerEmSize;
-  function adjustPositionFixed(reverse) {
-    var elems = document.body.getElementsByTagName("*");
-    bannerEmSize = bannerEmSize || parseFloat(getComputedStyle(document.getElementById('vote-banner')).fontSize);
-    // Multiply by .vote-banner__wrap em height
-    var emAdjust = bannerEmSize * 3;
-    for (var i=0; i < elems.length; i++) {
-      var elem = elems[i];
-      if (window.getComputedStyle(elem, null).getPropertyValue('position') == 'fixed') {
-        if (reverse) {
-          elem.style.top = ((parseFloat(elem.style.top) || 0) - emAdjust) + 'px';
-        } else {
-          elem.style.top = ((parseFloat(elem.style.top) || 0) + emAdjust) + 'px';
-        }
-      }
+  var prevBodyTransform = '';
+  function adjustBody(reverse) {
+    if (reverse) {
+      document.body.style.transform = prevBodyTransform;
+    } else {
+      prevBodyTransform = document.body.style.transform;
+      document.body.style.transform = 'translate(0, 3em)';
     }
   }
 
@@ -135,8 +110,8 @@
   window.__voteBanner_close = function() {
     var elt = document.getElementById('vote-banner');
     elt.parentNode.removeChild(elt);
-    adjustPositionFixed(true /* reverse */);
-    document.getElementById('vote-banner__wrap').style.marginTop = 0;
+
+    adjustBody(true /* reverse */);
 
     createCookie(COOKIE_NAME, 1, 7);
   }
@@ -154,7 +129,6 @@
 </div>");
   }
 
-  // Create cookie
   function createCookie(name, value, days) {
     var expires;
     if (days) {
@@ -168,7 +142,6 @@
     document.cookie = name+"="+value+expires+"; path=/";
   }
 
-  // Read cookie
   function readCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -189,8 +162,7 @@
   }
 
   injectStyles();
-  wrapBody();
+  adjustBody();
   addBanner();
-  adjustPositionFixed();
   wireCloseButton();
 })();
