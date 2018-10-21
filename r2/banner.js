@@ -83,6 +83,9 @@
         font-size: 0.85em; \
         line-height: 1.3em; \
       } \
+      .vote-banner__close { \
+        display: none; \
+      } \
     } \
   ';
 
